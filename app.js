@@ -1,0 +1,2 @@
+renderProducts(products);
+renderCart();

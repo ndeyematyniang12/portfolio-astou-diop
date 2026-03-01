@@ -1,0 +1,54 @@
+body {
+    margin: 0;
+    color: #000;
+    text-align: center;
+    font-family: Arial;
+}
+
+.arena {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+    background-image: url("img/cité.jpeg");
+    background-repeat: no-repeat;      /* Empêche la répétition */
+    background-size: cover;            /* Adapte l’image à l’écran */
+    background-position: center;       /* Centre l’image */
+    background-attachment: fixed;      /* (optionnel) effet pro */
+}
+
+.fighter {
+    position: absolute;
+    bottom: 0;
+    width: 250px;
+    transition: transform 0.2s ease;
+}
+
+.left {
+    left: 100px;
+}
+
+.right {
+    right: 100px;
+    transform: scaleX(-1);
+}
+
+.punch {
+    transform: translateX(40px);
+}
+
+.hit {
+    filter: brightness(2);
+}
+
+.health-bar-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px;
+}
+
+.health {
+    width: 40%;
+    height: 20px;
+    background: red;
+    transition: width 0.3s;
+}

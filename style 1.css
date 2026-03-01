@@ -1,0 +1,33 @@
+/* Dropdown joli et moderne */
+.navbar-nav .dropdown-menu {
+    background-color: #fff;
+    border-radius: 10px;
+    min-width: 200px;
+    padding: 10px 0;
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .dropdown-item {
+    color: #111197;
+    font-weight: 500;
+    padding: 10px 20px;
+    transition: 0.3s;
+}
+
+.navbar-nav .dropdown-item:hover {
+    background-color: #111197;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.navbar-nav .dropdown-toggle::after {
+    margin-left: 5px;
+    content: "▾"; /* petite flèche */
+}
+
+/* Hover sur desktop uniquement */
+@media (min-width: 992px) {
+  .nav-item.dropdown:hover > .dropdown-menu {
+      display: block;
+  }
+}

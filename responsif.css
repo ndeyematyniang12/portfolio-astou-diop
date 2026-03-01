@@ -1,0 +1,119 @@
+
+/* Menu */
+.navbar{
+  position:fixed;
+  width:100%;
+  top:0;
+  z-index:2000;
+  background:#ffffff;
+  box-shadow:0 4px 20px rgba(0,0,0,0.1);
+}
+
+.navbar-brand{
+  color:#111197 !important;
+}
+
+.navbar-nav .nav-link{
+  color:#111197 !important;
+  font-weight:500;
+  transition:0.3s;
+  padding:8px 15px;
+}
+/* Icônes du menu principal */
+.nav-link i {
+  font-size: 0.85rem; /* petite taille */
+  vertical-align: middle;
+}
+
+/* Icônes du sous-menu */
+.dropdown-item i {
+  font-size: 0.8rem; /* encore plus discret pour les sous-menus */
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* Optionnel : ajustement hover */
+.dropdown-item:hover {
+  background-color: #f5f7fa;
+  transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover{
+  background:#111197;
+  color:white !important;
+  border-radius:8px;
+}
+
+/* ================= DROPDOWN ================= */
+.dropdown-menu{
+  border:none;
+  border-radius:15px;
+  padding:10px 0;
+  box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.dropdown-menu .dropdown-item{
+  color:#111197 !important;
+  transition:0.3s;
+  white-space:nowrap;
+}
+
+.dropdown-menu .dropdown-item:hover{
+  background:#111197 !important;
+  color:#fff !important;
+}
+
+/* ================= SOUS-MENU ================= */
+.dropdown-submenu{
+  position:relative;
+}
+
+.dropdown-submenu > .dropdown-menu{
+  position:absolute;
+  top:0;
+  right:100%;
+  margin-left:0.1rem;
+  display:none;
+  border-radius:10px;
+  min-width:220px;
+}
+
+.dropdown-submenu:hover > .dropdown-menu{
+  display:block;
+}
+
+.submenu-arrow{
+  margin-left:auto;
+  font-size:12px;
+  transition:0.3s;
+}
+
+.dropdown-submenu:hover .submenu-arrow{
+  transform:rotate(90deg);
+}
+    /* Réseaux sociaux rotation */
+    @keyframes rotation { from {transform: rotate(0deg);} to {transform: rotate(360deg);} }
+    .social-icons img, .a-social-b img {
+      width: 30px;
+      margin: 8px;
+      animation: rotation 4s linear infinite;
+    }
+/* ================= BOUTON RETOUR HAUT ================= */
+#scrollTopBtn{
+  position:fixed;
+  bottom:30px;
+  right:30px;
+  background:#111197;
+  color:white;
+  border:none;
+  padding:10px 15px;
+  border-radius:50%;
+  display:none;
+  cursor:pointer;
+  box-shadow:0 5px 20px rgba(0,0,0,0.2);
+  transition:0.3s;
+}
+
+#scrollTopBtn:hover{
+  background:#000066;
+}

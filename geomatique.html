@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap/js/bootstrap.min.js">
+     <link rel="stylesheet" type="text/css" href="bootstrap-5.1.0-dist/bootstrap-5.1.0-dist/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap-5.1.0-dist/bootstrap-5.1.0-dist/bootstrap.min.js">>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://use.fontawesome.com/453b5af18c.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+     <link rel="stylesheet" type="text/css" href="style 3.css">
+     <link rel="stylesheet" type="text/css" href="photo.css">
+    <link rel="stylesheet" type="text/css" href="responsif.css">
+     <link rel="stylesheet" type="text/css" href="translate.css">
+     <script src="translate.js" defer></script>
+      <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<title>Portfolio Astou DIOP</title>
+</head>
+  <style>
+    /* Styles rapides pour les vidéos */
+    body {
+  background-color: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* === Header & Navigation === */
+
+header h1 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+menu  {
+ width: 100%;;
+}
+menu a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+menu a.active,
+menu a:hover {
+  background-color: #0056b3;
+}
+    .video-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .video-card {
+      width: 300px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+      background: #fff;
+    }
+
+    .video-card video {
+      width: 100%;
+      max-height: 200px;
+      border-radius: 5px;
+    }
+
+    .search-bar {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .search-bar input {
+      width: 80%;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .filter-bar {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .filter-btn {
+      padding: 8px 16px;
+      margin: 0 5px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #eee;
+    }
+
+    .filter-btn.active {
+      background-color: #007BFF;
+      color: #fff;
+    }
+
+   
+    footer {
+      text-align: center;
+      padding: 20px;
+  background-color: #111197;
+      color: #fff;
+      margin-top: 20px;
+      width: 100%;
+    }
+    /* Bouton menu */
+    *{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',sans-serif;padding-top:90px;background:#f4f4f4;}
+
+h2{text-align:center;margin:30px 0;color:#111197;font-weight:700;}
+
+#map{
+  height:750px;
+  width:90%;
+  margin:20px auto;
+  border-radius:12px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.2);
+  animation:fadeUp 1s ease forwards;
+  opacity:0;
+  transform:translateY(30px);
+}
+
+@keyframes fadeUp{
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* NAVBAR */
+.navbar{
+  position:fixed;
+  width:100%;
+  top:0;
+  z-index:2000;
+  background:#ffffff;
+  box-shadow:0 4px 20px rgba(0,0,0,0.1);
+}
+
+.navbar-brand{color:#111197!important;font-weight:bold;}
+
+.navbar-nav .nav-link{
+  color:#111197!important;
+  font-weight:500;
+  transition:0.3s;
+}
+
+.navbar-nav .nav-link:hover{
+  background:#111197;
+  color:white!important;
+  border-radius:8px;
+}
+/* ================= SUBMENU ================= */
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin-left: 0.1rem;
+  border-radius: 12px;
+  display: none;
+  min-width: 220px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  transition: 0.3s ease;
+}
+
+/* Hover Desktop */
+@media (min-width: 992px) {
+  .dropdown-submenu:hover > .dropdown-menu {
+    display: block;
+  }
+}
+
+/* Hover style */
+.dropdown-menu .dropdown-item:hover {
+  background-color: #111197 !important;
+  color: #fff !important;
+  transition: 0.3s;
+}
+
+/* Flèche rotation */
+.dropdown-submenu:hover .submenu-arrow {
+  transform: rotate(90deg);
+  transition: 0.3s;
+}
+/* Legend */
+.legend{
+  background:white;
+  padding:10px;
+  line-height:18px;
+  box-shadow:0 0 15px rgba(0,0,0,0.2);
+  border-radius:8px;
+}
+
+.legend i{
+  width:18px;
+  height:18px;
+  float:left;
+  margin-right:8px;
+  opacity:0.8;
+}
+
+/* Scroll top */
+#scrollTopBtn{
+  position:fixed;
+  bottom:30px;
+  right:30px;
+  background:#111197;
+  color:white;
+  border:none;
+  padding:10px 15px;
+  border-radius:50%;
+  display:none;
+  cursor:pointer;
+  box-shadow:0 5px 20px rgba(0,0,0,0.2);
+}
+/* ================= MENU CARTES ================= */
+.menu-cartes {
+  margin-top: 100px; /* espace sous navbar fixe */
+  background: #ffffff;
+  padding: 15px 0;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  position: relative;
+  z-index: 1500; /* au-dessus du contenu */
+}
+
+.menu-cartes ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-cartes a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #111197;
+  padding: 8px 15px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.menu-cartes a:hover {
+  background: #111197;
+  color: #ffffff;
+}
+/* Menu des cartes au-dessus de la carte */
+.menu-cartes {
+  position: relative; /* peut rester relative */
+  z-index: 3000;      /* plus grand que la carte (Leaflet ~ 2000) */
+  margin-bottom: 20px;
+}
+
+/* Carte */
+#map {
+  z-index: 1000;      /* en-dessous du menu */
+  position: relative;  /* important pour z-index */
+  height: 800px;
+  width: 90%;
+  margin: 20px auto 0 auto; /* margin-top ajusté */
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+<div class="container">
+
+  <a class="navbar-brand fw-bold" href="#">
+    <img style="width:100px;" src="Logo multiservice 0.png" alt="logo">
+    DIOP PRESTIGE
+  </a>
+
+  <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="menu">
+    <ul class="navbar-nav ms-auto">
+
+  <!-- Accueil -->
+  <li class="nav-item">
+    <a class="nav-link" href="index.html">
+      <i class="bi bi-house-door me-1"></i> Accueil
+    </a>
+  </li>
+
+  <!-- À propos -->
+  <li class="nav-item">
+    <a class="nav-link" href="apropos.html">
+      <i class="bi bi-person-badge me-1"></i> À propos
+    </a>
+  </li>
+
+  <!-- Services -->
+  <li class="nav-item">
+    <a class="nav-link" href="services.html">
+      <i class="bi bi-gear me-1"></i> Services
+    </a>
+  </li>
+
+  <!-- Formations -->
+  <li class="nav-item">
+    <a class="nav-link" href="Diplomesetformations.html">
+      <i class="bi bi-mortarboard me-1"></i> Formations
+    </a>
+  </li>
+
+  <!-- Expériences professionnelles -->
+  <li class="nav-item">
+    <a class="nav-link" href="experiencesprofessionnelles.html">
+      <i class="bi bi-briefcase-fill me-1"></i> Expériences
+    </a>
+  </li>
+
+  <!-- Réalisations -->
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+      <i class="bi bi-collection me-1"></i> Réalisations
+    </a>
+
+    <ul class="dropdown-menu">
+
+      <!-- Création Graphique -->
+      <li class="dropdown-submenu">
+        <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">
+          <span><i class="bi bi-palette me-2"></i> Création Graphique</span>
+          <i class="bi bi-chevron-right submenu-arrow"></i>
+        </a>
+
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="photoshop.html"><i class="bi bi-image me-2"></i> Photoshop & Canva</a></li>
+          <li><a class="dropdown-item" href="illustrator.html"><i class="bi bi-vector-pen me-2"></i> Illustrator</a></li>
+          <li><a class="dropdown-item" href="videos.html"><i class="bi bi-camera-video me-2"></i> Montage Audio & Vidéo</a></li>
+        </ul>
+      </li>
+ <li>
+        <a class="dropdown-item" href="sitesweb.html">
+          <i class="bi bi-code-slash me-2"></i> Développement Web
+        </a>
+      </li>
+      <!-- Géomatique -->
+      <li class="dropdown-submenu">
+        <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">
+          <span><i class="bi bi-globe2 me-2"></i> Géomatique</span>
+          <i class="bi bi-chevron-right submenu-arrow"></i>
+        </a>
+
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="autocad.html"><i class="bi bi-rulers me-2"></i> AutoCAD</a></li>
+          <li><a class="dropdown-item" href="geomatique.html"><i class="bi bi-geo-alt me-2"></i> SIG & Cartographie</a></li>
+        </ul>
+      </li>
+
+      <!-- Développement Web -->
+      <li>
+        <a class="dropdown-item" href="publications.html">
+    <i class="bi bi-journal-text me-2"></i> Publications
+        </a>
+      </li>
+    </ul>
+  </li>
+  <!-- Contact -->
+  <li class="nav-item">
+    <a class="nav-link" href="contact.html">
+      <i class="bi bi-envelope me-1"></i> Contact
+    </a>
+  </li>
+ <!-- WIDGET GOOGLE TRANSLATE -->
+        <li class="nav-item ms-3">
+          <div id="google_translate_element">
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+     <header>
+        <div class="container-fluid">
+ <!-- Bouton menu -->
+<nav class="menu-cartes">
+  <div class="container">
+    <ul>
+      <li><a href="cartes.html">Carte 1</a></li>
+      <li><a href="carte.html">Carte 2</a></li>
+      <li><a href="carte1.html">Carte 3</a></li>
+      <li><a href="carte2.html">Carte 4</a></li>
+      <li><a href="carte3.html">Carte 5</a></li>
+      <li><a href="carte_senegal.html">Carte 6</a></li>
+      <li><a href="carte4.html">Carte 7</a></li>
+    </ul>
+  </div>
+</nav>        
+<footer>
+  <p><strong>DIOP PRESTIGE</strong></p>
+  <p>
+    Je m’engage à fournir un travail de qualité et à améliorer chaque projet
+    jusqu’à satisfaction complète.
+  </p>
+  <!--copyright---------------------------------------------------------------------------->
+  <p>Guédiawaye – Wakhinane Nimzatt – Angle Mouss – Cité Madieng Khary DIENG</p>
+  <p>📞 +221 77 757 81 74 | ✉️ belleastoudiop@gmail.com</p>
+  <!--social------------------------------------------------------------------------->
+  <div class="social-icons">
+    <a href="https://www.facebook.com"><img src="facebook.png"></a>
+    <a href="https://x.com/"><img src="twitter.png"></a>
+    <a href="https://www.instagram.com/accounts/login/"><img src="instagram.png"></a>
+    <a href="https://youtube.com"><img src="youtube.png"></a>
+    <a href="https://api.whatsapp.com/"><img src="whatsapp.png"></a>
+  </div>
+  <p>© 2026 – Tous droits réservés</p>
+</footer>
+<!--attached social bar-------------------------------->
+<div class="a-social-b">
+    <a href="https://www.facebook.com"><img src="facebook.png"></a>
+    <a href="https://x.com/"><img src="twitter.png"></a>
+    <a href="https://www.instagram.com/accounts/login/"><img src="instagram.png"></a>
+    <a href="https://youtube.com"><img src="youtube.png"></a>
+    <a href="https://api.whatsapp.com/"><img src="whatsapp.png"></a>
+  </div>
+<button id="scrollTopBtn"><i class="bi bi-arrow-up"></i></button>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    // Recherche
+    const searchInput = document.getElementById('videoSearch');
+    const videoCards = document.querySelectorAll('.video-card');
+    searchInput.addEventListener('input', () => {
+      const searchValue = searchInput.value.toLowerCase();
+      videoCards.forEach(card => {
+        const title = card.dataset.title.toLowerCase();
+        card.style.display = title.includes(searchValue) ? 'block' : 'none';
+      });
+    });
+
+    // Slider
+    document.querySelectorAll('.slider').forEach(slider => {
+      let index = 0;
+      const slides = slider.querySelectorAll('.slide');
+      const prev = slider.querySelector('.prev');
+      const next = slider.querySelector('.next');
+      
+      function showSlide(i) {
+        slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+      }
+      
+      prev.addEventListener('click', () => {
+        index = (index > 0) ? index - 1 : slides.length - 1;
+        showSlide(index);
+      });
+
+      next.addEventListener('click', () => {
+        index = (index < slides.length - 1) ? index + 1 : 0;
+        showSlide(index);
+      });
+    });
+  </script>
+</body>
+</html>

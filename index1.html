@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Astou DIOP</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="responsif.css">
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="#ffffff">
+
+  <style>
+    body { font-family:'Segoe UI',sans-serif; background:#f8f9fa; padding-top:90px; overflow-x:hidden; }
+    h2, h3, h4 { color:#111197; }
+    .navbar { position:fixed; top:0; width:100%; z-index:2000; background:#fff; box-shadow:0 4px 20px rgba(0,0,0,0.1); }
+    .navbar-nav .nav-link { color:#111197 !important; font-weight:500; padding:8px 15px; transition:0.3s; }
+    .navbar-nav .nav-link:hover { background:#111197; color:white !important; border-radius:8px; }
+    .section-title { text-align:center; margin:80px 0 40px 0; font-weight:700; }
+    .portfolio-card { background:#fff; padding:20px; margin-bottom:20px; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.05); transition:0.3s; }
+    .portfolio-card:hover { transform:translateY(-5px); box-shadow:0 15px 40px rgba(0,0,0,0.08); }
+    .text-container { max-width:600px; text-align:center; padding:50px; }
+    .cta-buttons a { padding:12px 25px; border-radius:30px; margin:5px; text-decoration:none; font-weight:bold; background:#111197; color:#fff; }
+    .astou img { width:200px; border-radius:50%; box-shadow:0 15px 40px #111197; }
+    .social-icons a { width:40px; height:40px; display:flex; justify-content:center; align-items:center; background-color:#e6e3e3; margin:10px; border-radius:50%; transition:0.5s; }
+    .social-icons a:hover { background-color:#000; transform:scale(1.2); }
+    footer { background:#111197; color:#fff; padding:40px 20px; text-align:center; }
+    @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+    .fade-up { opacity:0; transform:translateY(30px); animation:fadeUp 0.8s ease forwards; }
+    .fade-delay-1 { animation-delay:0.2s; }
+    .fade-delay-2 { animation-delay:0.4s; }
+    .fade-delay-3 { animation-delay:0.6s; }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#"><img style="width:100px;" src="Logo multiservice 0.png" alt="logo"> DIOP PRESTIGE</a>
+    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house-door me-1"></i> Accueil</a></li>
+        <li class="nav-item"><a class="nav-link" href="apropos.html"><i class="bi bi-person-badge me-1"></i> À propos</a></li>
+        <li class="nav-item"><a class="nav-link" href="services.html"><i class="bi bi-gear me-1"></i> Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="Diplomesetformations.html"><i class="bi bi-mortarboard me-1"></i> Formations</a></li>
+        <li class="nav-item"><a class="nav-link" href="experiencesprofessionnelles.html"><i class="bi bi-briefcase-fill me-1"></i> Expériences</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="bi bi-collection me-1"></i> Réalisations</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="photoshop.html"><i class="bi bi-image me-2"></i> Photoshop & Canva</a></li>
+            <li><a class="dropdown-item" href="illustrator.html"><i class="bi bi-vector-pen me-2"></i> Illustrator</a></li>
+            <li><a class="dropdown-item" href="videos.html"><i class="bi bi-camera-video me-2"></i> Montage Audio & Vidéo</a></li>
+            <li><a class="dropdown-item" href="sitesweb.html"><i class="bi bi-code-slash me-2"></i> Développement Web</a></li>
+            <li><a class="dropdown-item" href="autocad.html"><i class="bi bi-rulers me-2"></i> AutoCAD</a></li>
+            <li><a class="dropdown-item" href="geomatique.html"><i class="bi bi-geo-alt me-2"></i> SIG & Cartographie</a></li>
+            <li><a class="dropdown-item" href="publications.html"><i class="bi bi-journal-text me-2"></i> Publications</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="contact.html"><i class="bi bi-envelope me-1"></i> Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="d-flex flex-wrap align-items-center justify-content-center py-5">
+  <div class="text-container">
+    <h2 class="fade-up">Astou DIOP</h2>
+    <p class="fade-up fade-delay-1 fw-bold">Entrepreneure Digitale • Développeuse Web & Mobile • Créatrice Multimédia • Géomaticienne • Doctorante en Histoire (Archéologie)</p>
+    <p class="mt-3 opacity-75">
+      Je transforme les idées en solutions numériques, visuelles et territoriales à forte valeur ajoutée, en alliant technologie, créativité et expertise scientifique.
+    </p>
+    <div class="cta-buttons fade-up fade-delay-2">
+      <a href="contact.html">Engagez-moi</a>
+      <a href="CV Astou DIOP.pdf" download>Télécharger CV</a>
+    </div>
+  </div>
+  <div class="astou">
+    <img src="Astou.jpg" alt="Astou DIOP">
+  </div>
+</section>
+
+<!-- CHIFFRES CLÉS -->
+<section class="container py-5 text-center">
+  <div class="row">
+    <div class="col-md-4"><h3 class="fw-bold text-primary">+15</h3><p>Projets réalisés</p></div>
+    <div class="col-md-4"><h3 class="fw-bold text-primary">5+</h3><p>Domaines d’expertise</p></div>
+    <div class="col-md-4"><h3 class="fw-bold text-primary">100%</h3><p>Engagement qualité</p></div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="container py-5">
+  <h2 class="section-title">Mes Réalisations</h2>
+  <div class="row">
+    <div class="col-md-4 portfolio-card">
+      <h4>Développement Web & Mobile</h4>
+      <p>Création de sites web interactifs et d’applications mobiles optimisées, alliant design, performance et expérience utilisateur.</p>
+      <a href="sitesweb.html" class="btn btn-primary">Voir Projets</a>
+    </div>
+    <div class="col-md-4 portfolio-card">
+      <h4>Design Graphique & Multimédia</h4>
+      <p>Conception de logos, montages photo, vidéo et audio pour des solutions visuelles créatives et impactantes.</p>
+      <a href="photoshop.html" class="btn btn-primary">Voir Projets</a>
+    </div>
+    <div class="col-md-4 portfolio-card">
+      <h4>Géomatique & AutoCAD</h4>
+      <p>Projets de cartographie, SIG et modélisation 3D pour l’analyse territoriale et l’architecture.</p>
+      <a href="geomatique.html" class="btn btn-primary">Voir Projets</a>
+    </div>
+    <div class="col-md-4 portfolio-card mt-3">
+      <h4>Publications & Projets Éditoriaux</h4>
+      <p>Rédaction et publication de livres et articles scientifiques, projets éditoriaux numériques et imprimés.</p>
+      <a href="publications.html" class="btn btn-primary">Voir Projets</a>
+    </div>
+  </div>
+</section>
+
+<!-- FORMATIONS -->
+<section class="container py-5">
+  <h2 class="section-title">Formations & Expertises</h2>
+  <ul class="publications">
+    <li><strong>Doctorat en Histoire – Archéologie</strong>, :contentReference[oaicite:0]{index=0} – En cours</li>
+    <li><strong>Développement Web & Mobile</strong> – Mars 2021 à Décembre 2021</li>
+    <li><strong>Infographie & Multimédia</strong> – Mars 2021 à Décembre 2021</li>
+    <li><strong>Géomatique Professionnelle</strong> – 2017 à 2019</li>
+    <li><strong>Bureautique & Productivité</strong> – Janvier 2012 à Mars 2021</li>
+    <li><strong>Formations Complémentaires</strong> – Février 2017 à Septembre 2017 & 2007-2008</li>
+  </ul>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>DIOP PRESTIGE</strong></p>
+  <p>Je m’engage à fournir un travail de qualité et à améliorer chaque projet jusqu’à satisfaction complète.</p>
+  <p>Guédiawaye – Wakhinane Nimzatt – Angle Mouss – Cité Madieng Khary DIENG</p>
+  <p>📞 +221 77 757 81 74 | ✉️ belleastoudiop@gmail.com</p>
+  <div class="social-icons">
+    <a href="https://www.facebook.com"><img src="facebook.png"></a>
+    <a href="https://x.com/"><img src="twitter.png"></a>
+    <a href="https://www.instagram.com/accounts/login/"><img src="instagram.png"></a>
+    <a href="https://youtube.com"><img src="youtube.png"></a>
+    <a href="https://api.whatsapp.com/"><img src="whatsapp.png"></a>
+  </div>
+  <p>© 2026 – Tous droits réservés</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

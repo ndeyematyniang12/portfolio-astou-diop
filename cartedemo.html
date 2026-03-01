@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carte Interactive Sénégal - Populations RGPH-5</title>
+<link rel="stylesheet" type="text/css" href="responsif.css">
+<link rel="stylesheet" type="text/css" href="translate.css">
+<script src="translate.js" defer></script>
+<script src="responsif.js" defer></script>
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',sans-serif;padding-top:90px;background:#f4f4f4;}
+
+h2{text-align:center;margin:30px 0;color:#111197;font-weight:700;}
+
+#map{
+  height:750px;
+  width:90%;
+  margin:20px auto;
+  border-radius:12px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.2);
+  animation:fadeUp 1s ease forwards;
+  opacity:0;
+  transform:translateY(30px);
+}
+
+@keyframes fadeUp{
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* NAVBAR */
+.navbar{
+  position:fixed;
+  width:100%;
+  top:0;
+  z-index:2000;
+  background:#ffffff;
+  box-shadow:0 4px 20px rgba(0,0,0,0.1);
+}
+
+.navbar-brand{color:#111197!important;font-weight:bold;}
+
+.navbar-nav .nav-link{
+  color:#111197!important;
+  font-weight:500;
+  transition:0.3s;
+}
+
+.navbar-nav .nav-link:hover{
+  background:#111197;
+  color:white!important;
+  border-radius:8px;
+}
+/* ================= SUBMENU ================= */
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin-left: 0.1rem;
+  border-radius: 12px;
+  display: none;
+  min-width: 220px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  transition: 0.3s ease;
+}
+
+/* Hover Desktop */
+@media (min-width: 992px) {
+  .dropdown-submenu:hover > .dropdown-menu {
+    display: block;
+  }
+}
+
+/* Hover style */
+.dropdown-menu .dropdown-item:hover {
+  background-color: #111197 !important;
+  color: #fff !important;
+  transition: 0.3s;
+}
+
+/* Flèche rotation */
+.dropdown-submenu:hover .submenu-arrow {
+  transform: rotate(90deg);
+  transition: 0.3s;
+}
+/* Legend */
+.legend{
+  background:white;
+  padding:10px;
+  line-height:18px;
+  box-shadow:0 0 15px rgba(0,0,0,0.2);
+  border-radius:8px;
+}
+
+.legend i{
+  width:18px;
+  height:18px;
+  float:left;
+  margin-right:8px;
+  opacity:0.8;
+}
+
+/* Scroll top */
+#scrollTopBtn{
+  position:fixed;
+  bottom:30px;
+  right:30px;
+  background:#111197;
+  color:white;
+  border:none;
+  padding:10px 15px;
+  border-radius:50%;
+  display:none;
+  cursor:pointer;
+  box-shadow:0 5px 20px rgba(0,0,0,0.2);
+}
+/* ================= MENU CARTES ================= */
+.menu-cartes {
+  margin-top: 100px; /* espace sous navbar fixe */
+  background: #ffffff;
+  padding: 15px 0;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  position: relative;
+  z-index: 1500; /* au-dessus du contenu */
+}
+
+.menu-cartes ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-cartes a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #111197;
+  padding: 8px 15px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.menu-cartes a:hover {
+  background: #111197;
+  color: #ffffff;
+}
+/* Menu des cartes au-dessus de la carte */
+.menu-cartes {
+  position: relative; /* peut rester relative */
+  z-index: 3000;      /* plus grand que la carte (Leaflet ~ 2000) */
+  margin-bottom: 20px;
+}
+
+/* Carte */
+#map {
+  z-index: 1000;      /* en-dessous du menu */
+  position: relative;  /* important pour z-index */
+  height: 800px;
+  width: 90%;
+  margin: 20px auto 0 auto; /* margin-top ajusté */
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+
+    <a class="navbar-brand fw-bold" href="#">
+      <img style="width:100px;" src="Logo multiservice 0.png" alt="logo">
+      DIOP PRESTIGE
+    </a>
+
+    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto">
+
+        <!-- Accueil -->
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            <i class="bi bi-house-door me-1"></i> Accueil
+          </a>
+        </li>
+
+        <!-- À propos -->
+        <li class="nav-item">
+          <a class="nav-link" href="apropos.html">
+            <i class="bi bi-person-badge me-1"></i> À propos
+          </a>
+        </li>
+
+        <!-- Services -->
+        <li class="nav-item">
+          <a class="nav-link" href="services.html">
+            <i class="bi bi-gear me-1"></i> Services
+          </a>
+        </li>
+
+        <!-- Formations -->
+        <li class="nav-item">
+          <a class="nav-link" href="Diplomesetformations.html">
+            <i class="bi bi-mortarboard me-1"></i> Formations
+          </a>
+        </li>
+
+        <!-- Expériences -->
+        <li class="nav-item">
+          <a class="nav-link" href="experiencesprofessionnelles.html">
+            <i class="bi bi-briefcase-fill me-1"></i> Expériences
+          </a>
+        </li>
+
+       <li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+    <i class="bi bi-collection me-1"></i> Réalisations
+  </a>
+
+  <ul class="dropdown-menu">
+
+    <!-- Création Graphique -->
+    <li class="dropdown-submenu">
+      <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">
+        <span><i class="bi bi-palette me-2"></i> Création Graphique</span>
+        <i class="bi bi-chevron-right submenu-arrow"></i>
+      </a>
+
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="photoshop.html">
+          <i class="bi bi-image me-2"></i> Photoshop & Canva
+        </a></li>
+        <li><a class="dropdown-item" href="illustrator.html">
+          <i class="bi bi-vector-pen me-2"></i> Illustrator
+        </a></li>
+        <li><a class="dropdown-item" href="videos.html">
+          <i class="bi bi-camera-video me-2"></i> Montage Audio & Vidéo
+        </a></li>
+      </ul>
+    </li>
+
+    <!-- Développement Web -->
+    <li>
+      <a class="dropdown-item" href="sitesweb.html">
+        <i class="bi bi-code-slash me-2"></i> Développement Web
+      </a>
+    </li>
+
+    <!-- Géomatique -->
+    <li class="dropdown-submenu">
+      <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">
+        <span><i class="bi bi-globe2 me-2"></i> Géomatique</span>
+        <i class="bi bi-chevron-right submenu-arrow"></i>
+      </a>
+
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="autocad.html">
+          <i class="bi bi-rulers me-2"></i> AutoCAD
+        </a></li>
+        <li><a class="dropdown-item" href="geomatique.html">
+          <i class="bi bi-geo-alt me-2"></i> SIG & Cartographie
+        </a></li>
+      </ul>
+    </li>
+
+    <!-- Publications -->
+    <li>
+      <a class="dropdown-item" href="publications.html">
+        <i class="bi bi-journal-text me-2"></i> Publications
+      </a>
+    </li>
+
+  </ul>
+</li>
+        <!-- Contact -->
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html">
+            <i class="bi bi-envelope me-1"></i> Contact
+          </a>
+        </li>
+
+        <!-- Google Translate -->
+        <li class="nav-item ms-3">
+          <div id="google_translate_element"></div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= MENU CARTES ================= -->
+<nav id="menu-overlay" class="menu-cartes">
+  <div class="container">
+    <ul>
+      <li><a href="cartes.html">Carte 1</a></li>
+      <li><a href="carte.html">Carte 2</a></li>
+      <li><a href="carte1.html">Carte 3</a></li>
+      <li><a href="carte2.html">Carte 4</a></li>
+      <li><a href="carte3.html">Carte 5</a></li>
+      <li><a href="carte_senegal.html">Carte 6</a></li>
+      <li><a href="zone.html">Carte Dakar</a></li>
+    </ul>
+  </div>
+</nav>
+<div id="map"></div>
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+/* =============================
+   INITIALISATION DE LA CARTE
+============================= */
+const map = L.map('map').setView([14.4974, -14.4524], 7);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap'
+}).addTo(map);
+
+/* =============================
+   DONNÉES DES RÉGIONS
+============================= */
+const regions = [
+{
+    nom: "Dakar",
+    coord: [14.7167, -17.4677],
+    pop: "≈ 4 000 000",
+    densite: "Très élevée",
+    eco: "Commerce, services, administration",
+    urban: "97 %",
+    educ: "Très élevé",
+    eau: "95 %",
+    elec: "98 %"
+},
+{
+    nom: "Thiès",
+    coord: [14.7910, -16.9256],
+    pop: "≈ 2 100 000",
+    densite: "Élevée",
+    eco: "Industrie, agriculture, transport",
+    urban: "55 %",
+    educ: "Élevé",
+    eau: "80 %",
+    elec: "78 %"
+},
+{
+    nom: "Diourbel",
+    coord: [14.6600, -16.3900],
+    pop: "≈ 1 800 000",
+    densite: "Élevée",
+    eco: "Agriculture, commerce religieux",
+    urban: "35 %",
+    educ: "Moyen",
+    eau: "72 %",
+    elec: "65 %"
+},
+{
+    nom: "Fatick",
+    coord: [14.3390, -16.4110],
+    pop: "≈ 800 000",
+    densite: "Moyenne",
+    eco: "Pêche, agriculture, élevage",
+    urban: "30 %",
+    educ: "Moyen",
+    eau: "70 %",
+    elec: "60 %"
+},
+{
+    nom: "Kaolack",
+    coord: [14.1460, -16.0720],
+    pop: "≈ 1 300 000",
+    densite: "Moyenne",
+    eco: "Arachide, commerce",
+    urban: "40 %",
+    educ: "Moyen",
+    eau: "68 %",
+    elec: "62 %"
+},
+{
+    nom: "Kaffrine",
+    coord: [14.1050, -15.5500],
+    pop: "≈ 700 000",
+    densite: "Faible",
+    eco: "Agriculture, élevage",
+    urban: "20 %",
+    educ: "Faible",
+    eau: "60 %",
+    elec: "50 %"
+},
+{
+    nom: "Tambacounda",
+    coord: [13.7700, -13.6670],
+    pop: "≈ 900 000",
+    densite: "Faible",
+    eco: "Agriculture, mines",
+    urban: "25 %",
+    educ: "Faible",
+    eau: "55 %",
+    elec: "45 %"
+},
+{
+    nom: "Kédougou",
+    coord: [12.5560, -12.1800],
+    pop: "≈ 200 000",
+    densite: "Très faible",
+    eco: "Orpaillage, agriculture",
+    urban: "18 %",
+    educ: "Faible",
+    eau: "50 %",
+    elec: "40 %"
+},
+{
+    nom: "Saint-Louis",
+    coord: [16.0180, -16.4890],
+    pop: "≈ 1 100 000",
+    densite: "Moyenne",
+    eco: "Agriculture, pêche",
+    urban: "45 %",
+    educ: "Bon",
+    eau: "75 %",
+    elec: "70 %"
+},
+{
+    nom: "Louga",
+    coord: [15.6180, -16.2240],
+    pop: "≈ 900 000",
+    densite: "Faible",
+    eco: "Élevage, agriculture",
+    urban: "30 %",
+    educ: "Moyen",
+    eau: "65 %",
+    elec: "55 %"
+},
+{
+    nom: "Matam",
+    coord: [15.6550, -13.2550],
+    pop: "≈ 700 000",
+    densite: "Faible",
+    eco: "Élevage, agriculture",
+    urban: "25 %",
+    educ: "Faible",
+    eau: "60 %",
+    elec: "50 %"
+},
+{
+    nom: "Ziguinchor",
+    coord: [12.5830, -16.2710],
+    pop: "≈ 700 000",
+    densite: "Moyenne",
+    eco: "Agriculture, tourisme",
+    urban: "40 %",
+    educ: "Bon",
+    eau: "75 %",
+    elec: "70 %"
+},
+{
+    nom: "Sédhiou",
+    coord: [12.7080, -15.5560],
+    pop: "≈ 500 000",
+    densite: "Faible",
+    eco: "Agriculture",
+    urban: "22 %",
+    educ: "Faible",
+    eau: "60 %",
+    elec: "50 %"
+},
+{
+    nom: "Kolda",
+    coord: [12.8930, -14.9500],
+    pop: "≈ 900 000",
+    densite: "Faible",
+    eco: "Agriculture, élevage",
+    urban: "28 %",
+    educ: "Moyen",
+    eau: "65 %",
+    elec: "55 %"
+}
+];
+
+/* =============================
+   AJOUT DES MARQUEURS
+============================= */
+regions.forEach(r => {
+    const popup = `
+    <div class="popup-content">
+        <h3>${r.nom}</h3>
+        <b>Population :</b> ${r.pop}<br>
+        <b>Densité :</b> ${r.densite}<br>
+        <b>Activités :</b> ${r.eco}<br>
+        <b>Urbanisation :</b> ${r.urban}<br>
+        <b>Niveau d’éducation :</b> ${r.educ}<br>
+        <b>Accès à l’eau :</b> ${r.eau}<br>
+        <b>Accès à l’électricité :</b> ${r.elec}
+    </div>
+    `;
+
+    L.marker(r.coord)
+        .addTo(map)
+        .bindPopup(popup);
+});
+</script>
+
+</body>
+</html>

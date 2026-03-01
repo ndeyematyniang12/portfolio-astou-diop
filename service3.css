@@ -1,0 +1,101 @@
+/* ---------------------- Services ---------------------- */
+.services {
+    background-color: #f8f9fa;
+    padding: 80px 10%;
+}
+
+.services-text h2 {
+    font-family: Calibri, sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.services-text p {
+    font-family: Calibri, sans-serif;
+    font-size: 16px;
+    color: #666;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/* Boxes container */
+.box-container, .box-container2 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+}
+
+/* Boxes Style */
+.box-1, .box-2, .box-3, .box-4, .box-5, .box-6, .box-7 {
+    width: 280px;
+    min-height: 320px;
+    border-radius: 20px;
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    background: linear-gradient(135deg, #007bff, #00c6ff);
+    color: #fff;
+    transition: all 0.5s ease;
+    opacity: 0;
+    transform: translateY(50px);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+/* Fade-in on scroll */
+.box-1.animate, .box-2.animate, .box-3.animate,
+.box-4.animate, .box-5.animate, .box-6.animate, .box-7.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hover Effect */
+.box-1:hover, .box-2:hover, .box-3:hover,
+.box-4:hover, .box-5:hover, .box-6:hover, .box-7:hover {
+    transform: translateY(-15px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+/* Icons */
+.box-1 i, .box-2 i, .box-3 i,
+.box-4 i, .box-5 i, .box-6 i, .box-7 i {
+    font-size: 50px;
+    margin-bottom: 15px;
+    transition: transform 0.5s, color 0.5s;
+}
+
+.box-1:hover i, .box-2:hover i, .box-3:hover i,
+.box-4:hover i, .box-5:hover i, .box-6:hover i, .box-7:hover i {
+    transform: rotateY(360deg) scale(1.2);
+    color: #ffd700;
+}
+
+/* Titles and Descriptions */
+.box-1 h3, .box-2 h3, .box-3 h3,
+.box-4 h3, .box-5 h3, .box-6 h3, .box-7 h3 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.box-1 p, .box-2 p, .box-3 p,
+.box-4 p, .box-5 p, .box-6 p, .box-7 p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .box-container, .box-container2 {
+        flex-direction: column;
+        align-items: center;
+    }
+}
