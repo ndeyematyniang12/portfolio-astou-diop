@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" type="text/css" href="translate.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 <script src="translate.js" defer></script>
 <title>Portfolio Astou DIOP</title>
 <!-- Bootstrap CSS -->
@@ -12,13 +14,14 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
-     <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-    <link rel="manifest" href="favicon/site.webmanifest">
-    <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
+   <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="60x60" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
 <style>
 /* ================= RESET ================= */
 *{margin:0; padding:0; box-sizing:border-box;}
@@ -34,7 +37,10 @@ body{font-family:'Segoe UI',sans-serif; overflow-x:hidden; padding-top:90px; bac
   background:#ffffff;
   box-shadow:0 4px 20px rgba(0,0,0,0.1);
 }
-
+section{
+   
+    height: 100%;
+}
 .navbar-brand{
   color:#111197 !important;
 }
@@ -285,6 +291,153 @@ footer{
   	box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
   	transition: all ease 0.5s;
   }
+  .hero{
+  height:60vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:white;
+  background:linear-gradient(135deg,#111197,#4e73df);
+}
+
+.hero h1{
+  font-size:3rem;
+  font-weight:700;
+}
+.work{
+  padding:80px 0;
+}
+
+.timeline{
+  position:relative;
+  max-width:1000px;
+  margin:auto;
+}
+
+.timeline::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  width:4px;
+  height:100%;
+  background:#111197;
+  transform:translateX(-50%);
+}
+
+.timeline-item{
+  width:50%;
+  padding:20px 40px;
+  position:relative;
+  opacity:0;
+  transform:translateY(50px);
+  transition:0.8s;
+}
+
+.timeline-item.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.timeline-item.left{ left:0; }
+.timeline-item.right{ left:50%; }
+
+.timeline-item::before{
+  content:"";
+  position:absolute;
+  top:30px;
+  right:-10px;
+  width:20px;
+  height:20px;
+  background:#111197;
+  border-radius:50%;
+}
+
+.timeline-item.right::before{
+  left:-10px;
+}
+
+.timeline-content{
+  background:white;
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.08);
+  transition:0.4s;
+  position:relative;
+  overflow:hidden;
+}
+
+.timeline-content::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:4px;
+  background:linear-gradient(90deg,#111197,#4e73df);
+  transition:0.5s;
+}
+
+.timeline-content:hover::before{
+  left:0;
+}
+
+.timeline-content:hover{
+  transform:translateY(-8px);
+}
+
+.timeline-year{
+  background:#111197;
+  color:white;
+  padding:5px 15px;
+  border-radius:30px;
+  font-weight:600;
+  display:inline-block;
+  margin-bottom:15px;
+}
+
+.timeline-content ul{
+  padding-left:20px;
+}
+
+.timeline-content ul li{
+  margin-bottom:6px;
+  font-size:0.95rem;
+}
+
+/* Responsive */
+@media(max-width:768px){
+  .timeline::before{ left:8px; }
+  .timeline-item{ width:100%; left:0; padding-left:30px; }
+  .timeline-item::before{ left:-2px; }
+}
+/* Badge poste actuel */
+.current-badge{
+  background:linear-gradient(90deg,#00c853,#69f0ae);
+  color:white;
+  font-size:0.75rem;
+  padding:5px 12px;
+  border-radius:20px;
+  margin-left:10px;
+  animation:pulse 1.8s infinite;
+}
+
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(0,200,83,0.7);}
+  70%{box-shadow:0 0 0 10px rgba(0,200,83,0);}
+  100%{box-shadow:0 0 0 0 rgba(0,200,83,0);}
+}
+
+/* Pastille en cours */
+.en-cours{
+  display:inline-block;
+  width:10px;
+  height:10px;
+  background:#00c853;
+  border-radius:50%;
+  margin-right:6px;
+}
+
 </style>
 </head>
 <body>
@@ -420,75 +573,156 @@ footer{
 </section>
 
 <!-- TIMELINE -->
-<section style="height: 100%;" class="work">
-  <div class="container">
-    <h2 class="work__heading">Expériences professionnelles</h2>
-    <div class="timeline">
+<!-- TIMELINE -->
+<section class="work">
+<div class="container">
+<div class="timeline">
+<!-- Artiste écrivaine -->
+<!-- Artiste écrivaine -->
+<div class="timeline-item left">
+  <div class="timeline-content">
+    <span class="timeline-year">
+      <span class="en-cours"></span>2024 - 2026
+    </span>
 
-      <div class="timeline-item left">
-        <div class="timeline-content">
-          <span class="timeline-year">2024-2026</span>
-          <h5>Artiste écrivaine</h5>
-          <p>Chez Ça Va Chauffer Production</p>
-        </div>
-      </div>
+    <h5>
+      <i class="bi bi-pencil-square me-2 text-primary"></i>
+      Artiste écrivaine
+      <span class="current-badge">Poste actuel</span>
+    </h5>
 
-      <div class="timeline-item left">
-        <div class="timeline-content">
-          <span class="timeline-year">2019-2024</span>
-          <h5>Fondatrice & Responsable – DIOP PRESTIGE</h5>
-          <p>Création et gestion d’une entreprise multiservices : impression, plastification, photocopie, numérisation, traitement de texte, correction de document, création graphique, impression textile, plans maison 2D/3D, cartographie et développement web.</p>
-        </div>
-      </div>
+    <p><strong>Ça Va Chauffer Production</strong></p>
 
-      <div class="timeline-item right">
-        <div class="timeline-content">
-          <span class="timeline-year">2019-2020</span>
-          <h5>Stage en rédaction web</h5>
-          <p>Rédacti Express</p>
-        </div>
-      </div>
+    <ul>
+      <li>Rédaction de scénarios et œuvres littéraires.</li>
+      <li>Création de contenus artistiques et culturels.</li>
+      <li>Participation à des projets audiovisuels.</li>
+      <li>Collaboration avec réalisateurs et producteurs.</li>
+      <li>Développement de projets créatifs originaux.</li>
+    </ul>
 
-      <div class="timeline-item left">
-        <div class="timeline-content">
-          <span class="timeline-year">2018-2019</span>
-          <h5>Stage au Cadastre</h5>
-          <p>Cadastre de Diourbel</p>
-          <a href="stage cadastre.jpg" download class="btn btn-custom mt-2">
-            Télécharger l'attestation
-          </a>
-        </div>
-      </div>
-
-      <div class="timeline-item right">
-        <div class="timeline-content">
-          <span class="timeline-year">2016-2017</span>
-          <h5>Tutrice universitaire</h5>
-          <p>Université Cheikh Anta Diop de Dakar</p>
-        </div>
-      </div>
-
-      <div class="timeline-item left">
-        <div class="timeline-content">
-          <span class="timeline-year">2012-2016</span>
-          <h5>Recherches archéologiques</h5>
-          <p>Prospections, fouilles et enquêtes ethnographiques</p>
-        </div>
-      </div>
-
-      <div class="timeline-item right">
-        <div class="timeline-content">
-          <span class="timeline-year">2013-2014</span>
-          <h5>Autorisation d’enseigner</h5>
-          <p>Écoles moyen-secondaires</p>
-          <a href="autorisation.jpg" download class="btn btn-custom mt-2">
-            Télécharger l'attestation
-          </a>
-        </div>
-      </div>
-
+    <div class="mt-2">
+      <span class="badge bg-primary">Écriture</span>
+      <span class="badge bg-success">Créativité</span>
+      <span class="badge bg-secondary">Scénario</span>
+      <span class="badge bg-dark">Production</span>
     </div>
   </div>
+</div>
+<!-- DIOP PRESTIGE -->
+<div class="timeline-item left">
+<div class="timeline-content">
+<span class="timeline-year">2019 - 2024</span>
+<h5><i class="bi bi-building me-2 text-primary"></i>Fondatrice & Responsable – DIOP PRESTIGE</h5>
+<ul>
+<li>Gestion administrative et financière de l’entreprise.</li>
+<li>Création graphique (logos, affiches, flyers).</li>
+<li>Développement et mise en ligne de sites web.</li>
+<li>Réalisation de cartes SIG et plans AutoCAD 2D/3D.</li>
+<li>Relation client et suivi de projets.</li>
+<li>Plus de 200 clients satisfaits.</li>
+</ul>
+<div class="mt-2">
+<span class="badge bg-primary">Gestion</span>
+<span class="badge bg-success">Web</span>
+<span class="badge bg-dark">SIG</span>
+<span class="badge bg-secondary">Design</span>
+</div>
+</div>
+</div>
+
+<!-- Rédaction Web -->
+<div class="timeline-item right">
+<div class="timeline-content">
+<span class="timeline-year">2019 - 2020</span>
+<h5><i class="bi bi-journal-text me-2 text-primary"></i>Stage en Rédaction Web</h5>
+<ul>
+<li>Rédaction d’articles optimisés SEO.</li>
+<li>Recherche documentaire approfondie.</li>
+<li>Correction et reformulation de contenus.</li>
+<li>Intégration sur CMS.</li>
+</ul>
+<div class="mt-2">
+<span class="badge bg-primary">SEO</span>
+<span class="badge bg-success">Rédaction</span>
+<span class="badge bg-secondary">CMS</span>
+</div>
+</div>
+</div>
+
+<!-- Cadastre -->
+<div class="timeline-item left">
+<div class="timeline-content">
+<span class="timeline-year">2018 - 2019</span>
+<h5><i class="bi bi-map me-2 text-primary"></i>Stage au Cadastre</h5>
+<ul>
+<li>Numérisation et mise à jour de plans cadastraux.</li>
+<li>Collecte et traitement de données foncières.</li>
+<li>Utilisation d’outils SIG.</li>
+<li>Participation aux levés topographiques.</li>
+</ul>
+<div class="mt-2">
+<span class="badge bg-primary">Cartographie</span>
+<span class="badge bg-success">Topographie</span>
+<span class="badge bg-dark">SIG</span>
+</div>
+</div>
+</div>
+
+<!-- Tutrice -->
+<div class="timeline-item right">
+<div class="timeline-content">
+<span class="timeline-year">2016 - 2017</span>
+<h5><i class="bi bi-mortarboard me-2 text-primary"></i>Tutrice Universitaire</h5>
+<ul>
+<li>Encadrement académique des étudiants.</li>
+<li>Soutien méthodologique.</li>
+<li>Organisation de séances de révision.</li>
+</ul>
+<div class="mt-2">
+<span class="badge bg-primary">Pédagogie</span>
+<span class="badge bg-success">Encadrement</span>
+</div>
+</div>
+</div>
+
+<!-- Recherches -->
+<div class="timeline-item left">
+<div class="timeline-content">
+<span class="timeline-year">2012 - 2016</span>
+<h5><i class="bi bi-search me-2 text-primary"></i>Recherches Archéologiques</h5>
+<ul>
+<li>Prospections et fouilles archéologiques.</li>
+<li>Analyse du matériel découvert.</li>
+<li>Rédaction de rapports scientifiques.</li>
+<li>Enquêtes ethnographiques.</li>
+</ul>
+<div class="mt-2">
+<span class="badge bg-primary">Recherche</span>
+<span class="badge bg-success">Analyse</span>
+<span class="badge bg-secondary">Terrain</span>
+</div>
+</div>
+</div>
+<div class="container">
+    <div class="timeline">
+
+      <!-- 2003-2004 -->
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <span class="timeline-year">2003 - 2004</span>
+          <h5><i class="bi bi-people-fill me-2 text-primary"></i>Agente de Recensement – EDEN</h5>
+          <p><strong>Commune de Guédiawaye</strong></p>
+          <ul>
+            <li>Participation au recensement des enfants inscrits et non inscrits sur le registre d'acte de naissance.</li>
+            <li>Collecte et vérification des données administratives.</li>
+            <li>Sensibilisation des familles.</li>
+            <li>Collaboration avec les autorités locales.</li>
+          </ul>
+        </div>
+      </div>
+</div>
+</div>
 </section>
 
 <!-- FOOTER -->
