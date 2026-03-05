@@ -9,7 +9,7 @@ body {
     position: relative;
     height: 500px;
     overflow: hidden;
-    background-image: url("img/cité.jpeg");
+    background-image: url("img/cite.jpg");
     background-repeat: no-repeat;      /* Empêche la répétition */
     background-size: cover;            /* Adapte l’image à l’écran */
     background-position: center;       /* Centre l’image */
