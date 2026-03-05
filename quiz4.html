@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
 <title>Quiz Histoire – Mini Jeu</title>
 <style>
   body {
@@ -107,10 +108,80 @@
     font-weight: bold;
     color: #333;
   }
+=======
+<title>Quiz Histoire – Version Audio Premium</title>
+
+<style>
+body{
+  font-family:Arial, sans-serif;
+  background:linear-gradient(135deg,#f0f2f5,#cfe2f3);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  margin:0;
+  transition:0.4s;
+}
+#quiz-container{
+  background:white;
+  width:650px;
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 0 30px rgba(0,0,0,0.3);
+  text-align:center;
+}
+#progress-container{
+  background:#e0e0e0;
+  height:15px;
+  border-radius:10px;
+  margin-bottom:15px;
+}
+#progress-bar{
+  background:#007BFF;
+  height:100%;
+  width:0%;
+  border-radius:10px;
+  transition:0.4s;
+}
+.option{
+  background:#e4e4e4;
+  padding:15px;
+  margin:10px 0;
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.3s;
+}
+.option:hover{
+  background:#d1d1d1;
+  transform:scale(1.05);
+}
+.correct{ background:#28a745 !important; color:white; }
+.incorrect{ background:#dc3545 !important; color:white; }
+button{
+  margin-top:15px;
+  padding:12px 25px;
+  border:none;
+  border-radius:10px;
+  background:#007BFF;
+  color:white;
+  cursor:pointer;
+}
+#timer{
+  font-weight:bold;
+  margin-bottom:10px;
+}
+#music-toggle{
+  position:absolute;
+  top:20px;
+  right:20px;
+  background:#28a745;
+}
+>>>>>>> 7139b92 (mise à jour du portfolio)
 </style>
 </head>
 <body>
 
+<<<<<<< HEAD
 <div id="quiz-container">
   <div id="progress-bar-container">
     <div id="progress-bar"></div>
@@ -262,6 +333,215 @@ function shuffleArray(array) {
 }
 
 startQuiz();
+=======
+<button id="music-toggle">🔊 Musique ON</button>
+
+<div id="quiz-container">
+  <div id="progress-container">
+    <div id="progress-bar"></div>
+  </div>
+  <div id="timer">Temps restant : 10s</div>
+  <h3 id="question"></h3>
+  <div id="options"></div>
+  <button id="next" style="display:none;">Suivant</button>
+  <h4 id="score">Score : 0</h4>
+</div>
+
+<!-- AUDIO -->
+<audio id="correct-sound" src="https://www.soundjay.com/buttons/sounds/button-4.mp3"></audio>
+<audio id="wrong-sound" src="https://www.soundjay.com/buttons/sounds/button-10.mp3"></audio>
+<audio id="end-sound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
+<audio id="bg-music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop></audio>
+
+<script>
+
+// ==========================
+// BASE DE QUESTIONS
+// ==========================
+
+const questionBank = [
+{q:"Qui a découvert l'Amérique en 1492 ?",o:["Christophe Colomb","Vasco de Gama","Marco Polo","Magellan"],a:"Christophe Colomb"},
+{q:"Début Révolution française ?",o:["1789","1776","1804","1799"],a:"1789"},
+{q:"Première Guerre mondiale ?",o:["1914-1918","1939-1945","1800","1870"],a:"1914-1918"},
+{q:"Seconde Guerre mondiale ?",o:["1939-1945","1914-1918","1804","1950"],a:"1939-1945"},
+{q:"Mur de Berlin tombé en ?",o:["1989","1991","1975","1961"],a:"1989"},
+{q:"Qui était Napoléon ?",o:["Empereur français","Roi anglais","Tsar","Président US"],a:"Empereur français"},
+{q:"Empire mongol dirigé par ?",o:["Gengis Khan","César","Attila","Alexandre"],a:"Gengis Khan"},
+{q:"Chute Empire romain ?",o:["476","395","500","410"],a:"476"},
+{q:"Imprimerie inventée par ?",o:["Gutenberg","Newton","Galilée","Pasteur"],a:"Gutenberg"},
+{q:"Révolution russe ?",o:["1917","1789","1945","1804"],a:"1917"},
+{q:"Cléopâtre était ?",o:["Reine d'Égypte","Impératrice romaine","Princesse grecque","Reine anglaise"],a:"Reine d'Égypte"},
+{q:"Indépendance USA ?",o:["1776","1789","1804","1917"],a:"1776"},
+{q:"Charlemagne ?",o:["Empereur d'Occident","Roi d'Espagne","Tsar","Pharaon"],a:"Empereur d'Occident"},
+{q:"Traité de Versailles ?",o:["1919","1945","1815","1804"],a:"1919"},
+{q:"Civilisation pyramides ?",o:["Égyptiens","Mayas","Incas","Grecs"],a:"Égyptiens"},
+{q:"Guerre froide opposait ?",o:["USA et URSS","France-Allemagne","Chine-Japon","Italie-Espagne"],a:"USA et URSS"}
+];
+
+// ==========================
+// CONFIG
+// ==========================
+
+const QUIZ_LENGTH = 5;
+const TOTAL_QUIZZES = 50;
+
+let quizNumber = 0;
+let score = 0;
+let currentIndex = 0;
+let currentQuiz = [];
+let timer;
+let timeLeft = 10;
+
+// ==========================
+// DOM
+// ==========================
+
+const questionEl = document.getElementById("question");
+const optionsEl = document.getElementById("options");
+const nextBtn = document.getElementById("next");
+const scoreEl = document.getElementById("score");
+const progressBar = document.getElementById("progress-bar");
+const timerEl = document.getElementById("timer");
+
+const correctSound = document.getElementById("correct-sound");
+const wrongSound = document.getElementById("wrong-sound");
+const endSound = document.getElementById("end-sound");
+const bgMusic = document.getElementById("bg-music");
+const musicToggle = document.getElementById("music-toggle");
+
+bgMusic.volume = 0.2;
+
+// ==========================
+// MUSIQUE
+// ==========================
+
+let musicPlaying = false;
+
+document.body.addEventListener("click", ()=>{
+  if(!musicPlaying){
+    bgMusic.play();
+    musicPlaying = true;
+  }
+},{once:true});
+
+musicToggle.onclick = ()=>{
+  if(bgMusic.paused){
+    bgMusic.play();
+    musicToggle.textContent="🔊 Musique ON";
+  }else{
+    bgMusic.pause();
+    musicToggle.textContent="🔇 Musique OFF";
+  }
+};
+
+// ==========================
+// FONCTIONS
+// ==========================
+
+function shuffle(arr){
+  return arr.sort(()=>Math.random()-0.5);
+}
+
+function generateQuiz(){
+  currentQuiz = shuffle([...questionBank]).slice(0,QUIZ_LENGTH);
+}
+
+function startQuiz(){
+  generateQuiz();
+  score=0;
+  currentIndex=0;
+  scoreEl.textContent="Score : 0";
+  loadQuestion();
+}
+
+function loadQuestion(){
+  clearInterval(timer);
+  timeLeft=10;
+  timerEl.textContent="Temps restant : 10s";
+  timer=setInterval(updateTimer,1000);
+
+  const q=currentQuiz[currentIndex];
+  questionEl.textContent=q.q;
+  optionsEl.innerHTML="";
+  nextBtn.style.display="none";
+
+  shuffle([...q.o]).forEach(option=>{
+    const div=document.createElement("div");
+    div.textContent=option;
+    div.classList.add("option");
+    div.onclick=()=>selectAnswer(option,div);
+    optionsEl.appendChild(div);
+  });
+
+  updateProgress();
+}
+
+function selectAnswer(selected,element){
+  clearInterval(timer);
+  const correct=currentQuiz[currentIndex].a;
+
+  [...optionsEl.children].forEach(btn=>btn.style.pointerEvents="none");
+
+  if(selected===correct){
+    element.classList.add("correct");
+    correctSound.play();
+    score++;
+    scoreEl.textContent="Score : "+score;
+  }else{
+    element.classList.add("incorrect");
+    wrongSound.play();
+    [...optionsEl.children].forEach(btn=>{
+      if(btn.textContent===correct) btn.classList.add("correct");
+    });
+  }
+
+  nextBtn.style.display="inline-block";
+}
+
+function updateTimer(){
+  timeLeft--;
+  timerEl.textContent="Temps restant : "+timeLeft+"s";
+  if(timeLeft<=0){
+    clearInterval(timer);
+    selectAnswer("",{});
+  }
+}
+
+function updateProgress(){
+  progressBar.style.width=((currentIndex)/QUIZ_LENGTH)*100+"%";
+}
+
+nextBtn.onclick=()=>{
+  currentIndex++;
+  if(currentIndex<QUIZ_LENGTH){
+    loadQuestion();
+  }else{
+    endQuiz();
+  }
+};
+
+function endQuiz(){
+  endSound.play();
+
+  document.getElementById("quiz-container").innerHTML=`
+    <h2>Quiz ${quizNumber+1} terminé</h2>
+    <p>Score : ${score}/${QUIZ_LENGTH}</p>
+    <p>Nouveau quiz dans 3 secondes...</p>
+  `;
+
+  quizNumber++;
+  if(quizNumber>=TOTAL_QUIZZES) quizNumber=0;
+
+  setTimeout(()=>location.reload(),3000);
+}
+
+// ==========================
+// LANCEMENT
+// ==========================
+
+startQuiz();
+
+>>>>>>> 7139b92 (mise à jour du portfolio)
 </script>
 </body>
 </html>
